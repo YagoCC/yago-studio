@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Connecting — Yago Studio</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<main>
+<header><strong>Yago Studio</strong><nav><a href="./">Home</a><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a></nav></header>
+<h1>Connecting your account…</h1>
+<p id="msg">Returning to the Yago Studio app on this computer.</p>
+</main>
+<script>
+// TikTok only accepts https redirect URIs. This page hands the authorization result
+// (code/state or error) to the Yago Studio panel running locally on the owner's computer.
+(function () {
+  var q = new URLSearchParams(location.search);
+  if (!q.has("code") && !q.has("error")) {
+    document.getElementById("msg").textContent = "Nothing to do here.";
+    return;
+  }
+  location.replace("http://127.0.0.1:8765/callback" + location.search);
+})();
+</script>
+</body>
+</html>
